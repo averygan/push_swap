@@ -24,7 +24,7 @@ void ft_sa(t_stack *a, int repeat)
 		a->content = a->next->content;
 		a->next->content = tmp;
 	}
-	if (repeat)
+	if (!repeat)
 		ft_printf("sa\n");
 }
 
@@ -40,7 +40,7 @@ void ft_sb(t_stack *b, int repeat)
 		b->content = b->next->content;
 		b->next->content = tmp;
 	}
-	if (repeat)
+	if (!repeat)
 		ft_printf("sb\n");
 }
 
@@ -84,23 +84,47 @@ void ft_pb(t_stack **a, t_stack **b)
 	ft_printf("pb\n");
 }
 
-// // shift up all elements of stack a by 1 (first el becomes last)
-// void ft_ra(t_stack *a, t_stack *b)
-// {
-	
-// }
+// shift up all elements of stack a by 1 (first el becomes last)
+void ft_ra(t_stack **a, int repeat)
+{
+	t_stack *first;
+	t_stack *last;
+	if (*a)
+	{
+		first = *a;
+		last = ft_lastnode(*a);
+		*a = (*a)->next;
+		first->next = NULL;
+		last->next = first;
+	}
+	if (!repeat)
+		ft_printf("ra\n");
+}
 
-// // shift up all elements of stack b by 1 (first el becomes last)
-// void ft_rb(t_stack *a, t_stack *b)
-// {
-	
-// }
+// shift up all elements of stack b by 1 (first el becomes last)
+void ft_rb(t_stack **b, int repeat)
+{
+	t_stack *first;
+	t_stack *last;
+	if (*b)
+	{
+		first = *b;
+		last = ft_lastnode(*b);
+		*b = (*b)->next;
+		first->next = NULL;
+		last->next = first;
+	}
+	if (!repeat)
+		ft_printf("rb\n");	
+}
 
-// // ra + rb
-// void ft_rr(t_stack *a, t_stack *b)
-// {
-	
-// }
+// ra + rb
+void ft_rr(t_stack **a, t_stack **b)
+{
+	ft_ra(a, 1);
+	ft_rb(b, 1);
+	ft_printf("rr\n");
+}
 
 // // shift down all elements of stack a by 1 (last el becomes first)
 // void ft_rra(t_stack *a, t_stack *b)

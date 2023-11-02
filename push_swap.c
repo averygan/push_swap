@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 		}
 	}
 	print_stacks(a, b);
-	ft_pb(&a, &b);
+	ft_rr(&a, &b);
 	print_stacks(a, b);
 	free_stacks(a, b);
 }
