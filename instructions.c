@@ -69,7 +69,7 @@ void ft_pa(t_stack **a, t_stack **b)
 }
 
 // take first el at top of a and put it at top of b, nothing if a empty
-void ft_pb(t_stack *a, t_stack *b)
+void ft_pb(t_stack **a, t_stack **b)
 {
 	int size;
 	t_stack *tmp;

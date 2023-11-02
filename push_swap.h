@@ -34,7 +34,7 @@ void 	ft_sa(t_stack *a, int repeat);
 void 	ft_sb(t_stack *b, int repeat);
 void 	ft_ss(t_stack *a, t_stack *b);
 void 	ft_pa(t_stack **a, t_stack **b);
-void 	ft_pb(t_stack *a, t_stack *b);
+void 	ft_pb(t_stack **a, t_stack **b);
 
 /* Push swap utils */
 void	print_list(t_stack *list);
