@@ -19,6 +19,11 @@
 // Create data structure stacks a and b
 // - Order numbers in a linked list
 
+void stack_init(t_stack **a, t_stack **b)
+{
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack *a;
@@ -49,7 +54,8 @@ int	main(int argc, char **argv)
 		}
 	}
 	print_stacks(a, b);
-	ft_rr(&a, &b);
+	ft_rrb(&b, 0);
+	ft_rrb(&b, 0);
 	print_stacks(a, b);
 	free_stacks(a, b);
 }

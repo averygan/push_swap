@@ -46,6 +46,17 @@ t_stack	*ft_lastnode(t_stack *lst)
 	return (lst);
 }
 
+t_stack	*ft_secondlast(t_stack *lst)
+{
+	while (lst)
+	{
+		if (!lst->next->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
 int	ft_stacksize(t_stack *lst)
 {
 	int	size;
