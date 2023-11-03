@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= push_swap
-SRCS	= push_swap.c stack.c instructions.c push_swap_utils.c
+SRCS	= push_swap.c stack.c instructions.c push_swap_utils.c stack_parser.c
 OBJS 	= ${SRCS:.c=.o}
 CC 		= gcc
 CFLAGS 	= -Wall -Wextra -Werror -g

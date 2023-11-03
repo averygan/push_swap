@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+// Creates a new node
 t_stack	*newnode(int content)
 {
 	t_stack	*node;
@@ -24,6 +25,7 @@ t_stack	*newnode(int content)
 	return (node);
 }
 
+// Add note to back to list
 void	ft_addnode(t_stack **lst, t_stack *new)
 {
 	if (lst && new)
@@ -35,6 +37,7 @@ void	ft_addnode(t_stack **lst, t_stack *new)
 	}
 }
 
+// Returns last node in linked list
 t_stack	*ft_lastnode(t_stack *lst)
 {
 	while (lst)
@@ -46,6 +49,7 @@ t_stack	*ft_lastnode(t_stack *lst)
 	return (lst);
 }
 
+// Returns second last node in linked list
 t_stack	*ft_secondlast(t_stack *lst)
 {
 	while (lst)
@@ -57,6 +61,7 @@ t_stack	*ft_secondlast(t_stack *lst)
 	return (lst);
 }
 
+// Returns list size
 int	ft_stacksize(t_stack *lst)
 {
 	int	size;

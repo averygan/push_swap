@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 // swap first 2 elements at the top of stack a
-void ft_sa(t_stack *a, int repeat)
+void	ft_sa(t_stack *a, int repeat)
 {
 	int size;
 	int tmp;
@@ -29,7 +29,7 @@ void ft_sa(t_stack *a, int repeat)
 }
 
 // swap first 2 elements at the top of stack b
-void ft_sb(t_stack *b, int repeat)
+void	ft_sb(t_stack *b, int repeat)
 {
 	int size;
 	int tmp;
@@ -45,7 +45,7 @@ void ft_sb(t_stack *b, int repeat)
 }
 
 // sa + sb
-void ft_ss(t_stack *a, t_stack *b)
+void	ft_ss(t_stack *a, t_stack *b)
 {
 	ft_sa(a, 1);
 	ft_sa(b, 1);
@@ -53,7 +53,7 @@ void ft_ss(t_stack *a, t_stack *b)
 }
 
 // take first el at top of b, and put it at top of a, nothing if b empty
-void ft_pa(t_stack **a, t_stack **b)
+void	ft_pa(t_stack **a, t_stack **b)
 {
 	int size;
 	t_stack *tmp;
@@ -69,10 +69,11 @@ void ft_pa(t_stack **a, t_stack **b)
 }
 
 // take first el at top of a and put it at top of b, nothing if a empty
-void ft_pb(t_stack **a, t_stack **b)
+void	ft_pb(t_stack **a, t_stack **b)
 {
-	int size;
+	int		size;
 	t_stack *tmp;
+
 	size = ft_stacksize(*a);
 	if (size > 0)
 	{
@@ -85,10 +86,11 @@ void ft_pb(t_stack **a, t_stack **b)
 }
 
 // shift up all elements of stack a by 1 (first el becomes last)
-void ft_ra(t_stack **a, int repeat)
+void	ft_ra(t_stack **a, int repeat)
 {
 	t_stack *first;
 	t_stack *last;
+
 	if (*a)
 	{
 		first = *a;
@@ -102,7 +104,7 @@ void ft_ra(t_stack **a, int repeat)
 }
 
 // shift up all elements of stack b by 1 (first el becomes last)
-void ft_rb(t_stack **b, int repeat)
+void	ft_rb(t_stack **b, int repeat)
 {
 	t_stack *first;
 	t_stack *last;
@@ -119,7 +121,7 @@ void ft_rb(t_stack **b, int repeat)
 }
 
 // ra + rb
-void ft_rr(t_stack **a, t_stack **b)
+void	ft_rr(t_stack **a, t_stack **b)
 {
 	ft_ra(a, 1);
 	ft_rb(b, 1);
@@ -127,7 +129,7 @@ void ft_rr(t_stack **a, t_stack **b)
 }
 
 // shift down all elements of stack a by 1 (last el becomes first)
-void ft_rra(t_stack **a, int repeat)
+void	ft_rra(t_stack **a, int repeat)
 {
 	t_stack *last;
 	t_stack *second_to_last;
@@ -146,11 +148,12 @@ void ft_rra(t_stack **a, int repeat)
 }
 
 // shift down all elements of stack b by 1 (last el becomes first)
-void ft_rrb(t_stack **b, int repeat)
+void	ft_rrb(t_stack **b, int repeat)
 {
 	t_stack *last;
 	t_stack *second_to_last;
 	int size;
+
 	size = ft_stacksize(*b);
 	if (size > 1)
 	{
@@ -165,7 +168,7 @@ void ft_rrb(t_stack **b, int repeat)
 }
 
 // rra + rrb
-void ft_rrr(t_stack **a, t_stack **b)
+void	ft_rrr(t_stack **a, t_stack **b)
 {
 	ft_rra(a, 1);
 	ft_rra(b, 1);

@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
+// Print content of a list
 void	print_list(t_stack *list)
 {
-	while(list)
+	while (list)
 	{
 		printf("%d -> ", list->content);
 		list = list->next;
@@ -22,6 +23,7 @@ void	print_list(t_stack *list)
 	printf("list end\n");
 }
 
+// Print content of both stacks
 void	print_stacks(t_stack *a, t_stack *b)
 {
 	ft_printf("stack a: ");
@@ -31,7 +33,6 @@ void	print_stacks(t_stack *a, t_stack *b)
 		a = a->next;
 	}
 	printf("list end\n");
-
 	ft_printf("stack b: ");
 	while (b)
 	{
@@ -41,9 +42,11 @@ void	print_stacks(t_stack *a, t_stack *b)
 	printf("list end\n");
 }
 
+// Free both stacks
 void	free_stacks(t_stack *a, t_stack *b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
+
 	while (a)
 	{
 		tmp = a;
@@ -54,6 +57,18 @@ void	free_stacks(t_stack *a, t_stack *b)
 	{
 		tmp = b;
 		b = b->next;
+		free(tmp);
+	}
+}
+
+void	free_stack(t_stack *a)
+{
+	t_stack	*tmp;
+
+	while (a)
+	{
+		tmp = a;
+		a = a->next;
 		free(tmp);
 	}
 }
