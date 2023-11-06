@@ -11,21 +11,22 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// ERROR CHECKER
-// - Argument larger than int
-// - Non integer arguments
-// - Check duplicates
 
-// Create stacks a and b
-// Runs stack init to create stack a as linked list
 int	main(int argc, char **argv)
 {
 	t_stack *a;
 	t_stack *b;
+	t_stackdata stack;
+
 	a = NULL;
 	b = NULL;
 	if (argc > 1)
-		stack_init(&a, argc, argv);
+		stack.length = stack_init(&a, argc, argv);
+	// Assigns index for each node
+	assign_index(stack, a);
+	if (stack.length == 3)
+		sort_three(&a);
+	sort_n(&stack, &a, &b);
 	print_stacks(a, b);
 	free_stacks(a, b);
 }

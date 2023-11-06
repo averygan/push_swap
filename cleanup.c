@@ -1,45 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 17:18:06 by agan              #+#    #+#             */
-/*   Updated: 2023/11/02 17:18:07 by agan             ###   ########.fr       */
+/*   Created: 2023/11/06 15:52:22 by agan              #+#    #+#             */
+/*   Updated: 2023/11/06 15:52:23 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Print content of a list
-void	print_list(t_stack *list)
+// Free words from ft_split
+void	ft_free(char **s)
 {
-	while (list)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		printf("%d -> ", list->content);
-		list = list->next;
+		free(s[i]);
+		i++;
 	}
-	printf("list end\n");
+	free(s);
 }
 
-// Print content of both stacks
-void	print_stacks(t_stack *a, t_stack *b)
+// Free both stacks
+void	free_stacks(t_stack *a, t_stack *b)
 {
-	ft_printf("stack a: ");
+	t_stack	*tmp;
+
 	while (a)
 	{
-		//ft_printf("%d -> ", a->content);
-		ft_printf("%d (index %d)-> ", a->content, a->index);
+		tmp = a;
 		a = a->next;
+		free(tmp);
 	}
-	printf("list end\n");
-	ft_printf("stack b: ");
 	while (b)
 	{
-		ft_printf("%d -> ", b->content);
+		tmp = b;
 		b = b->next;
+		free(tmp);
 	}
-	printf("list end\n");
 }
 
+void	free_stack(t_stack *a)
+{
+	t_stack	*tmp;
+
+	while (a)
+	{
+		tmp = a;
+		a = a->next;
+		free(tmp);
+	}
+}

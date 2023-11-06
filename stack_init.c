@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_parser.c                                     :+:      :+:    :+:   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:57:01 by agan              #+#    #+#             */
-/*   Updated: 2023/11/03 14:58:51 by agan             ###   ########.fr       */
+/*   Updated: 2023/11/06 15:52:09 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Free words from ft_split
-void	ft_free(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-}
-
 // Checks argument, runs error checker and creates linked list
-void	stack_init(t_stack **a, int argc, char **argv)
+int	stack_init(t_stack **a, int argc, char **argv)
 {
 	int		i;
 	char	**av;
@@ -48,6 +34,7 @@ void	stack_init(t_stack **a, int argc, char **argv)
 	error_checker(a, av, 1);
 	if (argc == 2)
 		ft_free(av);
+	return (ft_stacksize(*a));
 }
 
 // Error checker to check if all numbers are valid
