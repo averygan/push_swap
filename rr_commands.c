@@ -25,10 +25,12 @@ void	rra(t_stack **a, int repeat)
 		last = second_to_last->next;
 		second_to_last->next = NULL;
 		last->next = *a;
+		(*a)->prev = last;
+		last->prev = NULL;
 		*a = last;
+		if (!repeat)
+			ft_printf("rra\n");
 	}
-	if (!repeat)
-		ft_printf("rra\n");
 }
 
 // shift down all elements of stack b by 1 (last el becomes first)
@@ -45,10 +47,12 @@ void	rrb(t_stack **b, int repeat)
 		last = second_to_last->next;
 		second_to_last->next = NULL;
 		last->next = *b;
+		(*b)->prev = last;
+		last->prev = NULL;
 		*b = last;
+		if (!repeat)
+			ft_printf("rrb\n");
 	}
-	if (!repeat)
-		ft_printf("rrb\n");
 }
 
 // rra + rrb

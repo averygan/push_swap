@@ -22,10 +22,14 @@ void	pa(t_stack **a, t_stack **b)
 	{
 		tmp = *b;
 		*b = (*b)->next;
+		if (*b)
+			(*b)->prev = NULL;
+		tmp->next = *a;
+		if (tmp->next)
+			tmp->next->prev = tmp;
+		*a = tmp;
+		ft_printf("pa\n");
 	}
-	tmp->next = *a;
-	*a = tmp;
-	ft_printf("pa\n");
 }
 
 // take first el at top of a and put it at top of b, nothing if a empty
@@ -39,10 +43,14 @@ void	pb(t_stack **a, t_stack **b)
 	{
 		tmp = *a;
 		*a = (*a)->next;
+		if (*a)
+			(*a)->prev = NULL;
+		tmp->next = *b;
+		if (tmp->next)
+			tmp->next->prev = tmp;
+		*b = tmp;
+		ft_printf("pb\n");
 	}
-	tmp->next = *b;
-	*b = tmp;
-	ft_printf("pb\n");
 }
 
 // shift up all elements of stack a by 1 (first el becomes last)
@@ -55,12 +63,15 @@ void	ra(t_stack **a, int repeat)
 	{
 		first = *a;
 		last = ft_lastnode(*a);
+		first->prev = last;
+		last->next = first;
 		*a = (*a)->next;
+		(*a)->prev = NULL;
 		first->next = NULL;
 		last->next = first;
+		if (!repeat)
+			ft_printf("ra\n");
 	}
-	if (!repeat)
-		ft_printf("ra\n");
 }
 
 // shift up all elements of stack b by 1 (first el becomes last)
@@ -72,12 +83,15 @@ void	rb(t_stack **b, int repeat)
 	{
 		first = *b;
 		last = ft_lastnode(*b);
+		first->prev = last;
+		last->next = first;
 		*b = (*b)->next;
+		(*b)->prev = NULL;
 		first->next = NULL;
 		last->next = first;
+		if (!repeat)
+			ft_printf("rb\n");	
 	}
-	if (!repeat)
-		ft_printf("rb\n");	
 }
 
 // ra + rb
@@ -87,4 +101,3 @@ void	rr(t_stack **a, t_stack **b)
 	rb(b, 1);
 	ft_printf("rr\n");
 }
-

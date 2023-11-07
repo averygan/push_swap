@@ -74,6 +74,7 @@ int		get_position(t_stack *a, int match);
 /* Push swap utils */
 void	print_list(t_stack *list);
 void	print_stacks(t_stack *a, t_stack *b);
+void	print_stackbackwards(t_stack *a, t_stack *b);
 
 /* Functions for nodes' index */
 int 	get_index(int index, t_stack *a);

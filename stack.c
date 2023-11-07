@@ -22,6 +22,7 @@ t_stack	*newnode(int content)
 		return (NULL);
 	node->content = content;
 	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }
 
@@ -33,7 +34,10 @@ void	ft_addnode(t_stack **lst, t_stack *new)
 		if (*lst == NULL)
 			*lst = new;
 		else
+		{
+			new->prev = ft_lastnode(*lst);
 			ft_lastnode(*lst)->next = new;
+		}
 	}
 }
 

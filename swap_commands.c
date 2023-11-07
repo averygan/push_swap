@@ -20,12 +20,16 @@ void	sa(t_stack **a, int repeat)
 	if (size >= 2)
 	{
 		tmp = (*a)->next;
+		(*a)->prev = tmp;
 		(*a)->next = (*a)->next->next;
+		if (tmp->next)
+			(*a)->next->prev = *a;
+		tmp->prev = NULL;
 		tmp->next = *a;
 		*a = tmp;
+		if (!repeat)
+			ft_printf("sa\n");
 	}
-	if (!repeat)
-		ft_printf("sa\n");
 }
 
 // swap first 2 elements at the top of stack b
@@ -37,12 +41,16 @@ void	sb(t_stack **b, int repeat)
 	if (size >= 2)
 	{
 		tmp = (*b)->next;
+		(*b)->prev = tmp;
 		(*b)->next = (*b)->next->next;
+		if (tmp->next)
+			(*b)->next->prev = *b;
+		tmp->prev = NULL;
 		tmp->next = *b;
 		*b = tmp;
+		if (!repeat)
+			ft_printf("sb\n");
 	}
-	if (!repeat)
-		ft_printf("sb\n");
 }
 
 // sa + sb
