@@ -23,12 +23,43 @@ void sort_three(t_stack **a)
 
 	max = find_max(*a);
 	if (*a == max)
-		ft_ra(a, 0);
+		ra(a, 0);
 	else if ((*a)->next == max)
-		ft_rra(a, 0);
+		rra(a, 0);
 	if ((*a)->content > (*a)->next->content)
-		ft_sa(*a, 0);
+		sa(a, 0);
 }
+
+// Move given node to top, and pop to stack b
+void move_to_top(t_stack *a, t_stack **b, t_stack *node)
+{
+	int position; 
+
+	position = get_position(a, node->content);
+	while (position != 1)
+	{
+		if (position > (ft_stacksize(a) / 2))
+			rra(&a, 0);
+		else
+			ra(&a, 0);
+		position = get_position(a, node->content);
+	}
+	if (position == 1)
+		pb(&a, b);
+}
+
+// void sort_ten(t_stack **a, t_stack **b)
+// {
+// 	int position;
+
+// 	if (is_sorted(*a))
+// 	{
+// 		printf("input is already sorted\n");
+// 		exit(0);
+// 	}
+// 	// Get min node and move to top
+
+// }
 
 // Function to sort n (n >= 4)
 void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)

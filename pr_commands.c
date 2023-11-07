@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 // take first el at top of b, and put it at top of a, nothing if b empty
-void	ft_pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
 	int size;
 	t_stack *tmp;
@@ -29,7 +29,7 @@ void	ft_pa(t_stack **a, t_stack **b)
 }
 
 // take first el at top of a and put it at top of b, nothing if a empty
-void	ft_pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
 	int		size;
 	t_stack *tmp;
@@ -46,7 +46,7 @@ void	ft_pb(t_stack **a, t_stack **b)
 }
 
 // shift up all elements of stack a by 1 (first el becomes last)
-void	ft_ra(t_stack **a, int repeat)
+void	ra(t_stack **a, int repeat)
 {
 	t_stack *first;
 	t_stack *last;
@@ -64,7 +64,7 @@ void	ft_ra(t_stack **a, int repeat)
 }
 
 // shift up all elements of stack b by 1 (first el becomes last)
-void	ft_rb(t_stack **b, int repeat)
+void	rb(t_stack **b, int repeat)
 {
 	t_stack *first;
 	t_stack *last;
@@ -81,10 +81,10 @@ void	ft_rb(t_stack **b, int repeat)
 }
 
 // ra + rb
-void	ft_rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
-	ft_ra(a, 1);
-	ft_rb(b, 1);
+	ra(a, 1);
+	rb(b, 1);
 	ft_printf("rr\n");
 }
 

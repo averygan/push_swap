@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 // shift down all elements of stack a by 1 (last el becomes first)
-void	ft_rra(t_stack **a, int repeat)
+void	rra(t_stack **a, int repeat)
 {
 	t_stack *last;
 	t_stack *second_to_last;
@@ -32,7 +32,7 @@ void	ft_rra(t_stack **a, int repeat)
 }
 
 // shift down all elements of stack b by 1 (last el becomes first)
-void	ft_rrb(t_stack **b, int repeat)
+void	rrb(t_stack **b, int repeat)
 {
 	t_stack *last;
 	t_stack *second_to_last;
@@ -52,9 +52,9 @@ void	ft_rrb(t_stack **b, int repeat)
 }
 
 // rra + rrb
-void	ft_rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b)
 {
-	ft_rra(a, 1);
-	ft_rra(b, 1);
+	rra(a, 1);
+	rra(b, 1);
 	ft_printf("rrr\n");	
 }

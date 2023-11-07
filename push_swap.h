@@ -45,19 +45,19 @@ void	ft_addnode(t_stack **lst, t_stack *new);
 int		ft_stacksize(t_stack *lst);
 
 /* Swap commands */
-void	ft_sa(t_stack *a, int repeat);
-void	ft_sb(t_stack *b, int repeat);
-void	ft_ss(t_stack *a, t_stack *b);
+void	sa(t_stack **a, int repeat);
+void	sb(t_stack **b, int repeat);
+void	ss(t_stack *a, t_stack *b);
 /* push and rotate commmands */
-void	ft_pa(t_stack **a, t_stack **b);
-void	ft_pb(t_stack **a, t_stack **b);
-void	ft_ra(t_stack **a, int repeat);
-void	ft_rb(t_stack **b, int repeat);
+void	pa(t_stack **a, t_stack **b);
+void	pb(t_stack **a, t_stack **b);
+void	ra(t_stack **a, int repeat);
+void	rb(t_stack **b, int repeat);
 /* rr commands */
-void	ft_rr(t_stack **a, t_stack **b);
-void	ft_rra(t_stack **a, int repeat);
-void	ft_rrb(t_stack **b, int repeat);
-void	ft_rrr(t_stack **a, t_stack **b);
+void	rr(t_stack **a, t_stack **b);
+void	rra(t_stack **a, int repeat);
+void	rrb(t_stack **b, int repeat);
+void	rrr(t_stack **a, t_stack **b);
 
 /* Sort algorithm functions */
 void 	sort_three(t_stack **a);
@@ -66,6 +66,7 @@ void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
 /* Sort helper functions */
 int		is_sorted(t_stack *a);
 void	define_data(t_stackdata *stack);
+int		get_position(t_stack *a, int match);
 
 /* Push swap utils */
 void	print_list(t_stack *list);

@@ -50,4 +50,17 @@ void define_data(t_stackdata *stack)
 	}
 }
 
+int	get_position(t_stack *a, int match)
+{
+	int pos;
 
+	 pos = 1;
+	 while (a)
+	 {
+	 	if (a->content == match)
+	 		return (pos);
+	 	pos++;
+	 	a = a->next;
+	 }
+	 return (-1);
+}
