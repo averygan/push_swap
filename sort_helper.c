@@ -46,7 +46,7 @@ void define_data(t_stackdata *stack)
 	else if (stack->length >= 4)
 	{
 		stack->chunk = 2;
-		stack->key = (stack->length / 3);
+		stack->key = (stack->length / 2);
 	}
 }
 

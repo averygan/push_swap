@@ -74,6 +74,34 @@ void sort_ten(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
+t_stack *find_key_node(t_stack *a, int key_value)
+{
+	t_stack *top;
+	t_stack *bot;
+	int top_pos;
+	int bot_pos;
+
+	top_pos = 0;
+	bot_pos = 0;
+	top = a;
+	bot = ft_lastnode(a);
+	while (top && ++top_pos)
+	{
+		if (top->content <= key_value)
+			break ;
+		top = top->next;
+	}
+	while (bot && ++bot_pos)
+	{
+		if (bot->content <= key_value)
+			break ;
+		bot = bot->prev;
+	}
+	if (top_pos > bot_pos)
+		return (bot);
+	return (top);
+}
+
 // Function to sort n (n > 10)
 // Check if sorted
 // Define_data to get chunk information
@@ -98,7 +126,9 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 	{
 		key_value = get_index((stack->key * i), *a);
 		// Move everything <= key value to stack b
+		// Sort stack a
 		printf("keyvalue is %d\n", key_value);
+		printf("nearest key node is %d\n", find_key_node(*a, key_value)->content);
 		i++;
 	}
 }
