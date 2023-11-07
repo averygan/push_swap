@@ -61,7 +61,9 @@ void	rrr(t_stack **a, t_stack **b);
 
 /* Sort algorithm functions */
 void 	sort_three(t_stack **a);
+void	sort_ten(t_stack **a, t_stack **b);
 void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
+void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Sort helper functions */
 int		is_sorted(t_stack *a);

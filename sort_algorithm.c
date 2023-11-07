@@ -30,38 +30,49 @@ void sort_three(t_stack **a)
 		sa(a, 0);
 }
 
-// Move given node to top, and pop to stack b
-void move_to_top(t_stack *a, t_stack **b, t_stack *node)
+// Move given node to top, and push to stack b
+void move_to_top(t_stack **a, t_stack **b, t_stack *node)
 {
 	int position; 
 
-	position = get_position(a, node->content);
+	position = get_position(*a, node->content);
 	while (position != 1)
 	{
-		if (position > (ft_stacksize(a) / 2))
-			rra(&a, 0);
+		if (position > (ft_stacksize(*a) / 2))
+			rra(a, 0);
 		else
-			ra(&a, 0);
-		position = get_position(a, node->content);
+			ra(a, 0);
+		position = get_position(*a, node->content);
 	}
 	if (position == 1)
-		pb(&a, b);
+		pb(a, b);
 }
 
-// void sort_ten(t_stack **a, t_stack **b)
-// {
-// 	int position;
+// Sort n <= 10 && n != 3
+void sort_ten(t_stack **a, t_stack **b)
+{
+	if (is_sorted(*a))
+	{
+		printf("input is already sorted\n");
+		exit(0);
+	}
+	// Get min node and move to top, then move to b
+	while (ft_stacksize(*a) > 3)
+		move_to_top(a, b, find_min(*a));
+	if (ft_stacksize(*a) == 2)
+	{
+		if ((*a)->content > (*a)->next->content)
+			sa(a, 0);
+	}
+	// If stack size == 3, sort the three numbers in a
+	else if (ft_stacksize(*a) == 3)
+		sort_three(a);
+	// Push from b back to a
+	while (*b)
+		pa(a, b);
+}
 
-// 	if (is_sorted(*a))
-// 	{
-// 		printf("input is already sorted\n");
-// 		exit(0);
-// 	}
-// 	// Get min node and move to top
-
-// }
-
-// Function to sort n (n >= 4)
+// Function to sort n (n > 10)
 void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 {
 	int key_value;

@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	// 	sort_ten(&a, &b);
 	// else if (stack.length > 10)
 	// 	sort_n(&a);
-	sb(&b, 0);
+	sort_ten(&a, &b);
 	print_stacks(a, b);
 	free_stacks(a, b);
 }
