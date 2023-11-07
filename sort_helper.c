@@ -50,6 +50,7 @@ void define_data(t_stackdata *stack)
 	}
 }
 
+// Gets which position int match is within the linked list
 int	get_position(t_stack *a, int match)
 {
 	int pos;

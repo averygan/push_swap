@@ -49,6 +49,11 @@ void move_to_top(t_stack **a, t_stack **b, t_stack *node)
 }
 
 // Sort n <= 10 && n != 3
+// Check if sorted
+// If size > 3, move min node to b until size = 3
+// If size = 2, swap top 2
+	// When size = 3 -> use sort_three function
+// Push from b back to a
 void sort_ten(t_stack **a, t_stack **b)
 {
 	if (is_sorted(*a))
@@ -60,10 +65,7 @@ void sort_ten(t_stack **a, t_stack **b)
 	while (ft_stacksize(*a) > 3)
 		move_to_top(a, b, find_min(*a));
 	if (ft_stacksize(*a) == 2)
-	{
-		if ((*a)->content > (*a)->next->content)
-			sa(a, 0);
-	}
+		sa(a, 0);
 	// If stack size == 3, sort the three numbers in a
 	else if (ft_stacksize(*a) == 3)
 		sort_three(a);
@@ -73,6 +75,10 @@ void sort_ten(t_stack **a, t_stack **b)
 }
 
 // Function to sort n (n > 10)
+// Check if sorted
+// Define_data to get chunk information
+	// Find all nodes <= key value
+	// Push node to b
 void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 {
 	int key_value;
@@ -88,7 +94,7 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 	}
 	// Defines data of number of chunks and size per chunk (key)
 	define_data(stack);
-	while (i <= stack->chunk)
+	while (i <= stack->chunk - 1)
 	{
 		key_value = get_index((stack->key * i), *a);
 		// Move everything <= key value to stack b
