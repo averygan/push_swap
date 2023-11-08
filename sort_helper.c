@@ -33,12 +33,7 @@ int is_sorted(t_stack *a)
 // Size per chunk
 void define_data(t_stackdata *stack)
 {
-	if (stack->length >= 500)
-	{
-		stack->chunk = 8;
-		stack->length = (stack->length / 8);
-	}
-	else if (stack->length >= 100)
+	if (stack->length >= 100)
 	{
 		stack->chunk = 4;
 		stack->key = (stack->length / 4);

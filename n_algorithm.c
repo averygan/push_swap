@@ -66,10 +66,7 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 	(void)b;
 	// If aleady sorted, return
 	if (is_sorted(*a))
-	{
-		printf("input is already sorted\n");
 		exit(0);
-	}
 	// Defines data of number of chunks and size per chunk (key)
 	define_data(stack);
 	while (i < stack->chunk)
