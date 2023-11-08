@@ -30,24 +30,6 @@ void sort_three(t_stack **a)
 		sa(a, 0);
 }
 
-// Move given node to top, and push to stack b
-void move_to_top(t_stack **a, t_stack **b, t_stack *node)
-{
-	int position; 
-
-	position = get_position(*a, node->content);
-	while (position != 1)
-	{
-		if (position > (ft_stacksize(*a) / 2))
-			rra(a, 0);
-		else
-			ra(a, 0);
-		position = get_position(*a, node->content);
-	}
-	if (position == 1)
-		pb(a, b);
-}
-
 // Sort n <= 10 && n != 3
 // Check if sorted
 // If size > 3, move min node to b until size = 3
@@ -74,61 +56,22 @@ void sort_ten(t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
-t_stack *find_key_node(t_stack *a, int key_value)
+// Move given node to top, and push to stack b
+void move_to_top(t_stack **a, t_stack **b, t_stack *node)
 {
-	t_stack *top;
-	t_stack *bot;
-	int top_pos;
-	int bot_pos;
+	int position; 
 
-	top_pos = 0;
-	bot_pos = 0;
-	top = a;
-	bot = ft_lastnode(a);
-	while (top && ++top_pos)
+	position = get_position(*a, node->content);
+	while (position != 1)
 	{
-		if (top->content <= key_value)
-			break ;
-		top = top->next;
+		if (position == 2)
+			sa(a, 0);
+		else if (position > (ft_stacksize(*a) / 2))
+			rra(a, 0);
+		else
+			ra(a, 0);
+		position = get_position(*a, node->content);
 	}
-	while (bot && ++bot_pos)
-	{
-		if (bot->content <= key_value)
-			break ;
-		bot = bot->prev;
-	}
-	if (top_pos > bot_pos)
-		return (bot);
-	return (top);
-}
-
-// Function to sort n (n > 10)
-// Check if sorted
-// Define_data to get chunk information
-	// Find all nodes <= key value
-	// Push node to b
-void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
-{
-	int key_value;
-	int i;
-
-	i = 1;
-	(void)b;
-	// If aleady sorted, return
-	if (is_sorted(*a))
-	{
-		printf("input is already sorted\n");
-		exit(0);
-	}
-	// Defines data of number of chunks and size per chunk (key)
-	define_data(stack);
-	while (i <= stack->chunk - 1)
-	{
-		key_value = get_index((stack->key * i), *a);
-		// Move everything <= key value to stack b
-		// Sort stack a
-		printf("keyvalue is %d\n", key_value);
-		printf("nearest key node is %d\n", find_key_node(*a, key_value)->content);
-		i++;
-	}
+	if (position == 1)
+		pb(a, b);
 }

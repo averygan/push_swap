@@ -65,3 +65,33 @@ int	get_position(t_stack *a, int match)
 	 }
 	 return (-1);
 }
+
+// Function to find the closest node, from top and bottom, that matches key value
+t_stack *find_key_node(t_stack *a, int key_value)
+{
+	t_stack *top;
+	t_stack *bot;
+	int top_pos;
+	int bot_pos;
+
+	top_pos = 0;
+	bot_pos = 0;
+	top = a;
+	bot = ft_lastnode(a);
+	while (top && ++top_pos)
+	{
+		if (top->content <= key_value)
+			break ;
+		top = top->next;
+	}
+	while (bot && ++bot_pos)
+	{
+		if (bot->content <= key_value)
+			break ;
+		bot = bot->prev;
+	}
+	if (top_pos > bot_pos)
+		return (bot);
+	return (top);
+}
+

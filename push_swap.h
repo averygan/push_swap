@@ -36,7 +36,7 @@ typedef struct s_stackdata
 int		stack_init(t_stack **a, int argc, char **argv);
 void	error_checker(t_stack **a, char **av, int check);
 void	ft_error(t_stack **a, int num);
-long	ft_atol(char *num);
+int		ft_atol(char *num);
 
 /* Stack helper functions */
 t_stack	*newnode(int content);
@@ -64,12 +64,17 @@ void	rrr(t_stack **a, t_stack **b);
 void 	sort_three(t_stack **a);
 void	sort_ten(t_stack **a, t_stack **b);
 void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
-void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
+
+/* Sort n algorithm functions */
+void	sort_a(t_stack **a, t_stack **b);
+void	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
 
 /* Sort helper functions */
 int		is_sorted(t_stack *a);
 void	define_data(t_stackdata *stack);
 int		get_position(t_stack *a, int match);
+t_stack *find_key_node(t_stack *a, int key_value);
+void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Push swap utils */
 void	print_list(t_stack *list);

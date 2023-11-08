@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+// swap first 2 elements at the top of stack a
 void	sa(t_stack **a, int repeat)
 {
 	int size;

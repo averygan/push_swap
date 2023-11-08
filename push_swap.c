@@ -26,16 +26,15 @@ int	main(int argc, char **argv)
 	assign_index(stack, a);
 	if (stack.length == 3)
 		sort_three(&a);
-	// else if (stack.length != 3 && stack.length <= 10)
-	// 	sort_ten(&a, &b);
+	else if (stack.length != 3 && stack.length <= 10)
+		sort_ten(&a, &b);
 	else if (stack.length > 10)
 		sort_n(&stack, &a, &b);
-
 	// pb(&a, &b);
 	// pb(&a, &b);
 	// pb(&a, &b);
 	// rrb(&b, 0);
-	print_stacks(a, b);
-	print_stackbackwards(a, b);
+	// print_stacks(a, b);
+	// print_stackbackwards(a, b);
 	free_stacks(a, b);
 }

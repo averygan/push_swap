@@ -18,6 +18,7 @@ int	stack_init(t_stack **a, int argc, char **argv)
 	int		i;
 	char	**av;
 	t_stack	*node;
+	int counter = 0;
 
 	i = 0;
 	if (argc == 2)
@@ -30,6 +31,7 @@ int	stack_init(t_stack **a, int argc, char **argv)
 		node = newnode(ft_atol(av[i]));
 		ft_addnode(a, node);
 		i++;
+		counter++;
 	}
 	error_checker(a, av, 1);
 	if (argc == 2)
@@ -77,7 +79,7 @@ void	ft_error(t_stack **a, int num)
 }
 
 // Atol function and returns error if invalid integer
-long	ft_atol(char *num)
+int	ft_atol(char *num)
 {
 	long	res;
 	int		i;
@@ -103,5 +105,5 @@ long	ft_atol(char *num)
 		ft_error(NULL, 1);
 	if ((res * sign) > 2147483647 || (res * sign) < -2147483647)
 		ft_error(NULL, 1);
-	return (res * sign);
+	return ((int)(res * sign));
 }
