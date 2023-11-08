@@ -12,6 +12,35 @@
 
 #include "push_swap.h"
 
+// More efficient version of move_to_top function
+// Moves given node to top
+// Push to b
+// If index > pivot_value / 2, rb
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int pivot_value)
+{
+	int position;
+	int value;
+
+	position = get_position(*a, node->content);
+	value = node->content;
+	while (position != 1)
+	{
+		if (position == 2)
+			sa(a, 0);
+		else if (position > (ft_stacksize(*a) / 2))
+			rra(a, 0);
+		else
+			ra(a, 0);
+		position = get_position(*a, node->content);
+	}
+	if (position == 1)
+	{
+		pb(a, b);
+		if (value > (pivot_value / 2))
+			rb(b, 0);
+	}
+}
+
 // Sorts stack a (highest chunk)
 void sort_a(t_stack **a, t_stack **b)
 {
@@ -54,12 +83,12 @@ void push_to_a(t_stack **a, t_stack **b, t_stack *node)
 // Function to sort n (n > 10)
 // Check if sorted
 // Define_data to get chunk information
-	// Find all nodes <= key value
+	// Find all nodes <= pivot value
 	// Push node to b
 void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 {
-	int key_value;
-	t_stack *key_node;
+	int pivot_value;
+	t_stack *pivot_node;
 	int i;
 
 	i = 1;
@@ -67,19 +96,19 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 	// If aleady sorted, return
 	if (is_sorted(*a))
 		exit(0);
-	// Defines data of number of chunks and size per chunk (key)
+	// Defines data of number of chunks and size per chunk (pivot)
 	define_data(stack);
 	while (i < stack->chunk)
 	{
-		//printf("key is %d\n", stack->key * i);
-		key_value = get_index((stack->key * i), *a);
-		//printf("key_value is %d\n", key_value);
-		key_node = find_key_node(*a, key_value);
-		// Move everything <= key value to stack b
-		while (key_node)
+		//printf("pivot is %d\n", stack->pivot * i);
+		pivot_value = get_index((stack->pivot * i), *a);
+		//printf("pivot_value is %d\n", pivot_value);
+		pivot_node = find_pivot_node(*a, pivot_value);
+		// Move everything <= pivot value to stack b
+		while (pivot_node)
 		{
-			move_to_top(a, b, key_node);
-			key_node = find_key_node(*a, key_value);
+			move_to_b(a, b, pivot_node, pivot_value);
+			pivot_node = find_pivot_node(*a, pivot_value);
 		}
 		i++;
 	}

@@ -29,7 +29,7 @@ typedef struct s_stackdata
 {
 	int length;
 	int chunk;
-	int key;
+	int pivot;
 }	t_stackdata;
 
 /* Stack init functions */
@@ -64,17 +64,19 @@ void	rrr(t_stack **a, t_stack **b);
 void 	sort_three(t_stack **a);
 void	sort_ten(t_stack **a, t_stack **b);
 void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
+void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Sort n algorithm functions */
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int pivot_value);
 void	sort_a(t_stack **a, t_stack **b);
+void	push_to_a(t_stack **a, t_stack **b, t_stack *node);
 void	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
 
 /* Sort helper functions */
 int		is_sorted(t_stack *a);
 void	define_data(t_stackdata *stack);
 int		get_position(t_stack *a, int match);
-t_stack *find_key_node(t_stack *a, int key_value);
-void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
+t_stack *find_pivot_node(t_stack *a, int pivot_value);
 
 /* Push swap utils */
 void	print_list(t_stack *list);
@@ -84,6 +86,8 @@ void	print_stackbackwards(t_stack *a, t_stack *b);
 /* Functions for nodes' index */
 int 	get_index(int index, t_stack *a);
 void 	assign_index(t_stackdata stack, t_stack *a);
+
+/* Functions to get min and max nodes */
 t_stack	*second_to_min(int min, t_stack *a);
 t_stack *find_max(t_stack *a);
 t_stack *find_min(t_stack *a);

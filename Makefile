@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME	= push_swap
-SRCS	= push_swap.c stack_init.c stack.c pr_commands.c rr_commands.c swap_commands.c push_swap_utils.c sort_algorithm.c sort_helper.c cleanup.c index.c n_algorithm.c
+SRCS	= push_swap.c stack_init.c stack.c pr_commands.c rr_commands.c swap_commands.c push_swap_utils.c sort_algorithm.c sort_helper.c cleanup.c index.c n_algorithm.c min_max.c
 OBJS 	= ${SRCS:.c=.o}
 CC 		= gcc
 CFLAGS 	= -Wall -Wextra -Werror -g

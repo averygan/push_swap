@@ -36,12 +36,12 @@ void define_data(t_stackdata *stack)
 	if (stack->length >= 100)
 	{
 		stack->chunk = 4;
-		stack->key = (stack->length / 4);
+		stack->pivot = (stack->length / 4);
 	}
 	else if (stack->length >= 4)
 	{
 		stack->chunk = 2;
-		stack->key = (stack->length / 2);
+		stack->pivot = (stack->length / 2);
 	}
 }
 
@@ -61,8 +61,8 @@ int	get_position(t_stack *a, int match)
 	 return (-1);
 }
 
-// Function to find the closest node, from top and bottom, that matches key value
-t_stack *find_key_node(t_stack *a, int key_value)
+// Function to find the closest node, from top and bottom, that matches pivot value
+t_stack *find_pivot_node(t_stack *a, int pivot_value)
 {
 	t_stack *top;
 	t_stack *bot;
@@ -75,13 +75,13 @@ t_stack *find_key_node(t_stack *a, int key_value)
 	bot = ft_lastnode(a);
 	while (top && ++top_pos)
 	{
-		if (top->content <= key_value)
+		if (top->content <= pivot_value)
 			break ;
 		top = top->next;
 	}
 	while (bot && ++bot_pos)
 	{
-		if (bot->content <= key_value)
+		if (bot->content <= pivot_value)
 			break ;
 		bot = bot->prev;
 	}
