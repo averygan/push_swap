@@ -30,6 +30,9 @@ typedef struct s_stackdata
 	int length;
 	int chunk;
 	int pivot;
+	int pivot_index;
+	int pivot_value;
+	t_stack *pivot_node;
 }	t_stackdata;
 
 /* Stack init functions */
@@ -67,7 +70,7 @@ void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
 void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Sort n algorithm functions */
-void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int index);
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node);
 void	sort_a(t_stack **a, t_stack **b);
 void	push_to_a(t_stack **a, t_stack **b, t_stack *node);
 void	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
@@ -85,7 +88,7 @@ void	print_stackbackwards(t_stack *a, t_stack *b);
 
 /* Functions for nodes' index */
 int 	get_index(int index, t_stack *a);
-void 	assign_index(t_stackdata stack, t_stack *a);
+void 	assign_index(t_stackdata *stack, t_stack *a);
 
 /* Functions to get min and max nodes */
 t_stack	*second_to_min(int min, t_stack *a);

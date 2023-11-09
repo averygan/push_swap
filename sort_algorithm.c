@@ -22,6 +22,8 @@ void sort_three(t_stack **a)
 	t_stack *max;
 
 	max = find_max(*a);
+	if (is_sorted(*a))
+		return ;
 	if (*a == max)
 		ra(a, 0);
 	else if ((*a)->next == max)
@@ -38,11 +40,6 @@ void sort_three(t_stack **a)
 // Push from b back to a
 void sort_ten(t_stack **a, t_stack **b)
 {
-	if (is_sorted(*a))
-	{
-		printf("input is already sorted\n");
-		exit(0);
-	}
 	// Get min node and move to top, then move to b
 	while (ft_stacksize(*a) > 3)
 		move_to_top(a, b, find_min(*a));

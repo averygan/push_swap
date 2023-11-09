@@ -16,13 +16,11 @@
 // Moves given node to top
 // Push to b
 // If index > pivot_value / 2, rb
-void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int index)
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node)
 {
 	int position;
-	int value;
 
 	position = get_position(*a, node->content);
-	value = node->index;
 	while (position != 1)
 	{
 		if (position == 2)
@@ -34,11 +32,7 @@ void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int index)
 		position = get_position(*a, node->content);
 	}
 	if (position == 1)
-	{
 		pb(a, b);
-		if (value > index / 2)
-			rb(b, 0);
-	}
 }
 
 // Sorts stack a (highest chunk)
@@ -87,27 +81,25 @@ void push_to_a(t_stack **a, t_stack **b, t_stack *node)
 	// Push node to b
 void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 {
-	int pivot_value;
-	t_stack *pivot_node;
 	int i;
 
 	i = 1;
-	// If aleady sorted, return
-	if (is_sorted(*a))
-		exit(0);
 	// Defines data of number of chunks and size per chunk (pivot)
 	define_data(stack);
 	while (i < stack->chunk)
 	{
+		stack->pivot_index = stack->pivot * i;
 		//printf("pivot is %d\n", stack->pivot * i);
-		pivot_value = get_index((stack->pivot * i), *a);
+		stack->pivot_value = get_index((stack->pivot_index), *a);
 		//printf("pivot_value is %d\n", pivot_value);
-		pivot_node = find_pivot_node(*a, pivot_value);
+		stack->pivot_node = find_pivot_node(*a, stack->pivot_value);
 		// Move everything <= pivot value to stack b
-		while (pivot_node)
+		//printf("chunk size is %d, pivot value is %d\n", stack->chunk, pivot_value);
+		while (stack->pivot_node)
 		{
-			move_to_b(a, b, pivot_node, (stack->pivot * i));
-			pivot_node = find_pivot_node(*a, pivot_value);
+			//printf("pivot value is %d, currently moving %d\n", pivot_value, (*a)->content);
+			move_to_b(a, b, stack->pivot_node);
+			stack->pivot_node = find_pivot_node(*a, stack->pivot_value);
 		}
 		i++;
 	}

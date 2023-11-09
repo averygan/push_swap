@@ -35,13 +35,13 @@ void define_data(t_stackdata *stack)
 {
 	if (stack->length >= 400)
 	{
-		stack->chunk = 12;
-		stack->pivot = (stack->length / 12);
+		stack->chunk = 13;
+		stack->pivot = (stack->length / 13);
 	}
 	else if (stack->length >= 100)
 	{
-		stack->chunk = 4;
-		stack->pivot = (stack->length / 4);
+		stack->chunk = 5;
+		stack->pivot = (stack->length / 5);
 	}
 	else if (stack->length >= 4)
 	{

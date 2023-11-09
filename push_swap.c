@@ -16,27 +16,28 @@ int	main(int argc, char **argv)
 {
 	t_stack *a;
 	t_stack *b;
-	t_stackdata stack;
+	t_stackdata *stack;
 
+	stack = malloc(sizeof(t_stackdata));
 	a = NULL;
 	b = NULL;
 	if (argc > 1)
-		stack.length = stack_init(&a, argc, argv);
+		stack->length = stack_init(&a, argc, argv);
 	// Assigns index for each node
 	assign_index(stack, a);
-	if (stack.length == 3)
+	if (is_sorted(a))
+	{
+		free_stack(a);
+		exit(0);
+	}
+	if (stack->length == 3)
 		sort_three(&a);
-	else if (stack.length != 3 && stack.length <= 10)
+	else if (stack->length != 3 && stack->length <= 10)
 		sort_ten(&a, &b);
-	else if (stack.length > 10)
-		sort_n(&stack, &a, &b);
-	// pb(&a, &b);
-	// pb(&a, &b);
-	// pb(&a, &b);
-	// rrb(&b, 0);
+	else if (stack->length > 10)
+		sort_n(stack, &a, &b);
 	// print_stacks(a, b);
 	// print_stackbackwards(a, b);
-
 	free_stacks(a, b);
 }
 

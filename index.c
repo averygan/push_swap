@@ -23,7 +23,7 @@ int get_index(int index, t_stack *a)
 	return (-1);
 }
 
-void assign_index(t_stackdata stack, t_stack *a)
+void assign_index(t_stackdata *stack, t_stack *a)
 {
 	int i;
 	t_stack *min;
@@ -31,7 +31,7 @@ void assign_index(t_stackdata stack, t_stack *a)
 	i = 1;
 	min = find_min(a);
 	min->index = 1;
-	while (++i < stack.length + 1)
+	while (++i < stack->length + 1)
 	{
 		min = second_to_min(min->content, a);
 		min->index = i;
