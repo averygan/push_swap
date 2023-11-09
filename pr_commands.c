@@ -63,6 +63,8 @@ void	ra(t_stack **a, int repeat)
 	{
 		first = *a;
 		last = ft_lastnode(*a);
+		if (first == last)
+			return ;
 		first->prev = last;
 		last->next = first;
 		*a = (*a)->next;
@@ -83,6 +85,8 @@ void	rb(t_stack **b, int repeat)
 	{
 		first = *b;
 		last = ft_lastnode(*b);
+		if (first == last)
+			return ;
 		first->prev = last;
 		last->next = first;
 		*b = (*b)->next;

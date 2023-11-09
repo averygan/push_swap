@@ -58,6 +58,6 @@ void	sb(t_stack **b, int repeat)
 void	ss(t_stack *a, t_stack *b)
 {
 	sa(&a, 1);
-	sa(&b, 1);
+	sb(&b, 1);
 	ft_printf("s\n");
 }

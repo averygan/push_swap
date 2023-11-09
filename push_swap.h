@@ -67,7 +67,7 @@ void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
 void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Sort n algorithm functions */
-void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int pivot_value);
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int index);
 void	sort_a(t_stack **a, t_stack **b);
 void	push_to_a(t_stack **a, t_stack **b, t_stack *node);
 void	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);

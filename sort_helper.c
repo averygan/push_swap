@@ -33,7 +33,12 @@ int is_sorted(t_stack *a)
 // Size per chunk
 void define_data(t_stackdata *stack)
 {
-	if (stack->length >= 100)
+	if (stack->length >= 400)
+	{
+		stack->chunk = 12;
+		stack->pivot = (stack->length / 12);
+	}
+	else if (stack->length >= 100)
 	{
 		stack->chunk = 4;
 		stack->pivot = (stack->length / 4);
@@ -87,6 +92,7 @@ t_stack *find_pivot_node(t_stack *a, int pivot_value)
 	}
 	if (top_pos > bot_pos)
 		return (bot);
+	if (top_pos == bot_pos && !top && !bot)
+		return (NULL);
 	return (top);
 }
-

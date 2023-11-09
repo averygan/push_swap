@@ -59,6 +59,6 @@ void	rrb(t_stack **b, int repeat)
 void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a, 1);
-	rra(b, 1);
+	rrb(b, 1);
 	ft_printf("rrr\n");	
 }

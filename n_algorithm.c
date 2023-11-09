@@ -16,13 +16,13 @@
 // Moves given node to top
 // Push to b
 // If index > pivot_value / 2, rb
-void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int pivot_value)
+void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int index)
 {
 	int position;
 	int value;
 
 	position = get_position(*a, node->content);
-	value = node->content;
+	value = node->index;
 	while (position != 1)
 	{
 		if (position == 2)
@@ -36,7 +36,7 @@ void	move_to_b(t_stack **a, t_stack **b, t_stack *node, int pivot_value)
 	if (position == 1)
 	{
 		pb(a, b);
-		if (value > (pivot_value / 2))
+		if (value > index / 2)
 			rb(b, 0);
 	}
 }
@@ -92,7 +92,6 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 	int i;
 
 	i = 1;
-	(void)b;
 	// If aleady sorted, return
 	if (is_sorted(*a))
 		exit(0);
@@ -107,7 +106,7 @@ void sort_n(t_stackdata *stack, t_stack **a, t_stack **b)
 		// Move everything <= pivot value to stack b
 		while (pivot_node)
 		{
-			move_to_b(a, b, pivot_node, pivot_value);
+			move_to_b(a, b, pivot_node, (stack->pivot * i));
 			pivot_node = find_pivot_node(*a, pivot_value);
 		}
 		i++;
