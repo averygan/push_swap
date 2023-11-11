@@ -50,8 +50,14 @@ void	error_checker(t_stack **a, char **av, int check)
 
 	i = -1;
 	if (check == 0)
+	{
 		while (av[++i])
+		{
+			if (av[i][0] == '\0')
+				ft_error(NULL, 1);
 			ft_atol(av[i]);
+		}
+	}
 	else
 	{
 		curr = *a;
