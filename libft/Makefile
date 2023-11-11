@@ -44,7 +44,7 @@ $(PRINTF_PATH):
 ${NAME}: ${OBJS}
 	@${LIBC} ${NAME} ${OBJS}
 	@ar -x $(PRINTF_PATH)
-	@ar -rs $(NAME) *.o
+	@ar -rs $(NAME) ${PRINTF_OBJS}
 	@rm -f ${PRINTF_OBJS}
 
 .c.o:

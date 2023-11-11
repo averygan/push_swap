@@ -11,10 +11,11 @@
 # **************************************************************************** #
 
 NAME	= push_swap
-SRCS	= push_swap.c stack_init.c stack.c pr_commands.c rr_commands.c swap_commands.c push_swap_utils.c sort_algorithm.c sort_helper.c cleanup.c index.c n_algorithm.c min_max.c
+SRCS	= pushswap/push_swap.c stack/stack_init.c stack/stack.c stack/pr_commands.c stack/rr_commands.c stack/swap_commands.c \
+			pushswap/push_swap_utils.c pushswap/sort_algorithm.c pushswap/sort_helper.c pushswap/free.c pushswap/n_algorithm.c
 OBJS 	= ${SRCS:.c=.o}
 CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror -g
+CFLAGS 	= -Wall -Wextra -Werror
 LIBFT_BUILD := ./libft/libft.a
 
 all: ${NAME}

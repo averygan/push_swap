@@ -15,25 +15,27 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "libft/libft.h"
 
 typedef struct s_stack
 {
 	int				content;
 	int				index;
+	int 			cost;
+	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
 
-typedef struct s_stackdata
+typedef struct s_data
 {
 	int length;
-	int chunk;
-	int pivot;
-	int pivot_index;
-	int pivot_value;
-	t_stack *pivot_node;
-}	t_stackdata;
+	int a_size;
+	int b_size;
+	bool a_median;
+	bool b_median;
+}	t_data;
 
 /* Stack init functions */
 int		stack_init(t_stack **a, int argc, char **argv);
@@ -66,38 +68,28 @@ void	rrr(t_stack **a, t_stack **b);
 /* Sort algorithm functions */
 void 	sort_three(t_stack **a);
 void	sort_ten(t_stack **a, t_stack **b);
-void 	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
-void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 
 /* Sort n algorithm functions */
-void	move_to_b(t_stack **a, t_stack **b, t_stack *node);
-void	sort_a(t_stack **a, t_stack **b);
-void	push_to_a(t_stack **a, t_stack **b, t_stack *node);
-void	sort_n(t_stackdata *stack, t_stack **a, t_stack **b);
+void	sort_n(t_data *stack, t_stack **a, t_stack **b);
+void	set_target(t_stack *a, t_stack *b);
+int		get_cost(t_stack *a, t_stack *node);
+void	move_cost(t_stack *a, t_stack *b);
+void	move_stacks(t_data *stack, t_stack **a, t_stack **b);
 
 /* Sort helper functions */
 int		is_sorted(t_stack *a);
-void	define_data(t_stackdata *stack);
-int		get_position(t_stack *a, int match);
-t_stack *find_pivot_node(t_stack *a, int pivot_value);
+int		get_position(t_stack *a, t_stack *match);
+void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
+void	rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name);
 
 /* Push swap utils */
-void	print_list(t_stack *list);
-void	print_stacks(t_stack *a, t_stack *b);
-void	print_stackbackwards(t_stack *a, t_stack *b);
-
-/* Functions for nodes' index */
-int 	get_index(int index, t_stack *a);
-void 	assign_index(t_stackdata *stack, t_stack *a);
-
-/* Functions to get min and max nodes */
-t_stack	*second_to_min(int min, t_stack *a);
+void	set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node);
 t_stack *find_max(t_stack *a);
 t_stack *find_min(t_stack *a);
 
-/* Cleanup functions */
+/* Memory free functions */
 void	ft_free(char **s);
-void	free_stacks(t_stack *a, t_stack *b);
+void	free_stacks(t_data *stack, t_stack *a, t_stack *b);
 void	free_stack(t_stack *a);
 
 #endif

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // Checks argument, runs error checker and creates linked list
 int	stack_init(t_stack **a, int argc, char **argv)

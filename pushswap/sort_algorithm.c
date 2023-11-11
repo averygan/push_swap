@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // ****** Algorithm ******
 // 3 numbers
@@ -51,24 +51,4 @@ void sort_ten(t_stack **a, t_stack **b)
 	// Push from b back to a
 	while (*b)
 		pa(a, b);
-}
-
-// Move given node to top, and push to stack b
-void move_to_top(t_stack **a, t_stack **b, t_stack *node)
-{
-	int position; 
-
-	position = get_position(*a, node->content);
-	while (position != 1)
-	{
-		if (position == 2)
-			sa(a, 0);
-		else if (position > (ft_stacksize(*a) / 2))
-			rra(a, 0);
-		else
-			ra(a, 0);
-		position = get_position(*a, node->content);
-	}
-	if (position == 1)
-		pb(a, b);
 }

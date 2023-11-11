@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // take first el at top of b, and put it at top of a, nothing if b empty
 void	pa(t_stack **a, t_stack **b)

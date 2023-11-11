@@ -1,39 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:07:41 by agan              #+#    #+#             */
-/*   Updated: 2023/11/06 16:07:42 by agan             ###   ########.fr       */
+/*   Created: 2023/11/06 15:52:22 by agan              #+#    #+#             */
+/*   Updated: 2023/11/11 11:35:21 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int get_index(int index, t_stack *a)
+// Free words from ft_split
+void	ft_free(char **s)
 {
-	while (a)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (index == a->index)
-			return (a->content);
-		a = a->next;
+		free(s[i]);
+		i++;
 	}
-	return (-1);
+	free(s);
 }
 
-void assign_index(t_stackdata *stack, t_stack *a)
+// Free both stacks
+void	free_stacks(t_data *stack, t_stack *a, t_stack *b)
 {
-	int i;
-	t_stack *min;
+	t_stack	*tmp;
 
-	i = 1;
-	min = find_min(a);
-	min->index = 1;
-	while (++i < stack->length + 1)
+	while (a)
 	{
-		min = second_to_min(min->content, a);
-		min->index = i;
+		tmp = a;
+		a = a->next;
+		free(tmp);
+	}
+	while (b)
+	{
+		tmp = b;
+		b = b->next;
+		free(tmp);
+	}
+	free(stack);
+}
+
+void	free_stack(t_stack *a)
+{
+	t_stack	*tmp;
+
+	while (a)
+	{
+		tmp = a;
+		a = a->next;
+		free(tmp);
 	}
 }

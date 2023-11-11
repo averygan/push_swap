@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // shift down all elements of stack a by 1 (last el becomes first)
 void	rra(t_stack **a, int repeat)

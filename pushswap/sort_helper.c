@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // Function to check if stack is sorted
 int is_sorted(t_stack *a)
@@ -28,37 +28,15 @@ int is_sorted(t_stack *a)
 	return (1);
 }
 
-// Function to define stack data
-// Number of chunks
-// Size per chunk
-void define_data(t_stackdata *stack)
-{
-	if (stack->length >= 400)
-	{
-		stack->chunk = 13;
-		stack->pivot = (stack->length / 13);
-	}
-	else if (stack->length >= 100)
-	{
-		stack->chunk = 5;
-		stack->pivot = (stack->length / 5);
-	}
-	else if (stack->length >= 4)
-	{
-		stack->chunk = 2;
-		stack->pivot = (stack->length / 2);
-	}
-}
-
 // Gets which position int match is within the linked list
-int	get_position(t_stack *a, int match)
+int	get_position(t_stack *a, t_stack *match)
 {
 	int pos;
 
 	 pos = 1;
 	 while (a)
 	 {
-	 	if (a->content == match)
+	 	if (match && a && a->content == match->content)
 	 		return (pos);
 	 	pos++;
 	 	a = a->next;
@@ -66,33 +44,44 @@ int	get_position(t_stack *a, int match)
 	 return (-1);
 }
 
-// Function to find the closest node, from top and bottom, that matches pivot value
-t_stack *find_pivot_node(t_stack *a, int pivot_value)
+// Rotate stack till to_move is at the top of stack
+void rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name)
 {
-	t_stack *top;
-	t_stack *bot;
-	int top_pos;
-	int bot_pos;
+	while (*curr_stack != to_move)
+	{
+		if (stack_name == 'a')
+		{
+			if (stack->a_median)
+				rra(curr_stack, 0);
+			else
+				ra(curr_stack, 0);
+		}
+		else if (stack_name == 'b')
+		{
+			if (stack->b_median)
+				rrb(curr_stack, 0);
+			else
+				rb(curr_stack, 0);
+		}
+	}
+}
 
-	top_pos = 0;
-	bot_pos = 0;
-	top = a;
-	bot = ft_lastnode(a);
-	while (top && ++top_pos)
+// Move given node to top, and push to stack b
+void move_to_top(t_stack **a, t_stack **b, t_stack *node)
+{
+	int position;
+
+	position = get_position(*a, node);
+	while (position != 1)
 	{
-		if (top->content <= pivot_value)
-			break ;
-		top = top->next;
+		if (position == 2)
+			sa(a, 0);
+		else if (position > (ft_stacksize(*a) / 2))
+			rra(a, 0);
+		else
+			ra(a, 0);
+		position = get_position(*a, node);
 	}
-	while (bot && ++bot_pos)
-	{
-		if (bot->content <= pivot_value)
-			break ;
-		bot = bot->prev;
-	}
-	if (top_pos > bot_pos)
-		return (bot);
-	if (top_pos == bot_pos && !top && !bot)
-		return (NULL);
-	return (top);
+	if (position == 1)
+		pb(a, b);
 }
