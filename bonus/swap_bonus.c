@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_commands.c                                    :+:      :+:    :+:   */
+/*   swap_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:54:30 by agan              #+#    #+#             */
-/*   Updated: 2023/11/06 15:54:31 by agan             ###   ########.fr       */
+/*   Updated: 2023/11/11 16:47:17 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
 // swap first 2 elements at the top of stack a
-void	sa(t_stack **a, int repeat)
+void	sa(t_stack **a)
 {
 	int size;
 	t_stack *tmp;
@@ -28,13 +28,11 @@ void	sa(t_stack **a, int repeat)
 		tmp->prev = NULL;
 		tmp->next = *a;
 		*a = tmp;
-		if (!repeat)
-			ft_printf("sa\n");
 	}
 }
 
 // swap first 2 elements at the top of stack b
-void	sb(t_stack **b, int repeat)
+void	sb(t_stack **b)
 {
 	int size;
 	t_stack *tmp;
@@ -49,15 +47,12 @@ void	sb(t_stack **b, int repeat)
 		tmp->prev = NULL;
 		tmp->next = *b;
 		*b = tmp;
-		if (!repeat)
-			ft_printf("sb\n");
 	}
 }
 
 // sa + sb
 void	ss(t_stack **a, t_stack **b)
 {
-	sa(a, 1);
-	sb(b, 1);
-	ft_printf("s\n");
+	sa(a);
+	sb(b);
 }

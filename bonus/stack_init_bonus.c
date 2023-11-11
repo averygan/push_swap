@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   stack_init_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:57:01 by agan              #+#    #+#             */
-/*   Updated: 2023/11/06 15:52:09 by agan             ###   ########.fr       */
+/*   Updated: 2023/11/11 16:47:11 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
 // Checks argument, runs error checker and creates linked list
 int	stack_init(t_data *stack, t_stack **a, int argc, char **argv)

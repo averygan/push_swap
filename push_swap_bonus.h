@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 12:27:25 by agan              #+#    #+#             */
-/*   Updated: 2023/10/30 12:27:26 by agan             ###   ########.fr       */
+/*   Created: 2023/11/11 16:06:05 by agan              #+#    #+#             */
+/*   Updated: 2023/11/11 16:06:06 by agan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -51,48 +51,26 @@ void	ft_addnode(t_stack **lst, t_stack *new);
 int		ft_stacksize(t_stack *lst);
 
 /* Swap commands */
-void	sa(t_stack **a, int repeat);
-void	sb(t_stack **b, int repeat);
+void	sa(t_stack **a);
+void	sb(t_stack **b);
 void	ss(t_stack **a, t_stack **b);
 /* push and rotate commmands */
 void	pa(t_stack **a, t_stack **b);
 void	pb(t_stack **a, t_stack **b);
-void	ra(t_stack **a, int repeat);
-void	rb(t_stack **b, int repeat);
+void	ra(t_stack **a);
+void	rb(t_stack **b);
 /* rr commands */
 void	rr(t_stack **a, t_stack **b);
-void	rra(t_stack **a, int repeat);
-void	rrb(t_stack **b, int repeat);
+void	rra(t_stack **a);
+void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 
-/* Sort algorithm functions */
-void 	sort_three(t_stack **a);
-void	sort_ten(t_stack **a, t_stack **b);
-
-/* Sort n algorithm functions */
-void	sort_n(t_data *stack, t_stack **a, t_stack **b);
-int		get_cost(t_stack *a, t_stack *node);
-void	move_cost(t_stack *a, t_stack *b);
-void	move_stacks(t_data *stack, t_stack **a, t_stack **b);
-void	push_to_b(t_data *stack, t_stack **a, t_stack **b);
-
-/* Sort helper functions */
+/* Checker utils */
 int		is_sorted(t_stack *a);
-int		get_position(t_stack *a, t_stack *match);
-void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
-void	rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name);
-void	set_target(t_stack *a, t_stack *b);
-
-/* Push swap utils */
-void	set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node);
-void	assign_index(t_data *stack, t_stack *a);
-t_stack *find_max(t_stack *a);
-t_stack *find_min(t_stack *a);
-t_stack	*second_to_min(int min, t_stack *a);
 
 /* Memory free functions */
 void	ft_free(char **s);
 void	free_stacks(t_data *stack, t_stack *a, t_stack *b);
 void	free_stack(t_stack *a);
 
-#endif
+# endif

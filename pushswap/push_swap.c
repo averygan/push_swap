@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc > 1)
-		stack->length = stack_init(&a, argc, argv);
+		stack->length = stack_init(stack, &a, argc, argv);
 	if (is_sorted(a))
 	{
 		free_stack(a);
