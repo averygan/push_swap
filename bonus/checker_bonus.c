@@ -12,7 +12,7 @@
 
 #include "../push_swap_bonus.h"
 
-void	do_commands(char *buf, t_stack **a, t_stack **b)
+void	do_commands(int *error, char *buf, t_stack **a, t_stack **b)
 {
 	if (ft_strncmp(buf, "sa\n", 3) == 0)
 		sa(a);
@@ -36,20 +36,26 @@ void	do_commands(char *buf, t_stack **a, t_stack **b)
 		rrr(a, b);
 	else if (ft_strncmp(buf, "rr\n", 3) == 0)
 		rr(a, b);
+	else
+		*error = -1;
 }
 
 int	checker(t_stack **a, t_stack **b)
 {
 	char	*buf;
+	int		error;
 
+	error = 0;
 	while (buf)
 	{
 		buf = get_next_line(STDIN_FILENO);
 		if (buf)
-			do_commands(buf, a, b);
+			do_commands(&error, buf, a, b);
 		free(buf);
 	}
-	if (is_sorted(*a) && !(*b))
+	if (error != 0)
+		ft_putendl_fd("Error", 2);
+	else if (is_sorted(*a) && !(*b))
 		ft_putendl_fd("OK", 1);
 	else
 		ft_putendl_fd("KO", 1);
