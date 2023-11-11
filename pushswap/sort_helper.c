@@ -85,3 +85,33 @@ void move_to_top(t_stack **a, t_stack **b, t_stack *node)
 	if (position == 1)
 		pb(a, b);
 }
+
+// Sets target node of b to a matching node in a that is the smallest node that's larger
+// If none exists, set to smallest node
+void	set_target(t_stack *a, t_stack *b)
+{
+	t_stack *tmp;
+	t_stack *target_node;
+	int flag;
+
+	while (b)
+	{
+		flag = 0;
+		tmp = a;
+		target_node = find_max(a);
+		while (tmp)
+		{
+			if (tmp->content > b->content && tmp->content <= target_node->content)
+			{
+				target_node = tmp;
+				flag = 1;
+			}
+			tmp = tmp->next;
+		}
+		if (flag)
+			b->target = target_node;
+		else
+			b->target = find_min(a);
+		b = b->next;
+	}
+}

@@ -28,9 +28,8 @@ int	main(int argc, char **argv)
 		free_stack(a);
 		exit(0);
 	}
-	if (stack->length == 3)
-		sort_three(&a);
-	else if (stack->length != 3 && stack->length <= 10)
+	assign_index(stack, a);
+	if (stack->length <= 10)
 		sort_ten(&a, &b);
 	else if (stack->length > 10)
 		sort_n(stack, &a, &b);

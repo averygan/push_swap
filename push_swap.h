@@ -71,21 +71,24 @@ void	sort_ten(t_stack **a, t_stack **b);
 
 /* Sort n algorithm functions */
 void	sort_n(t_data *stack, t_stack **a, t_stack **b);
-void	set_target(t_stack *a, t_stack *b);
 int		get_cost(t_stack *a, t_stack *node);
 void	move_cost(t_stack *a, t_stack *b);
 void	move_stacks(t_data *stack, t_stack **a, t_stack **b);
+void	push_to_b(t_data *stack, t_stack **a, t_stack **b);
 
 /* Sort helper functions */
 int		is_sorted(t_stack *a);
 int		get_position(t_stack *a, t_stack *match);
 void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
 void	rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name);
+void	set_target(t_stack *a, t_stack *b);
 
 /* Push swap utils */
 void	set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node);
+void	assign_index(t_data *stack, t_stack *a);
 t_stack *find_max(t_stack *a);
 t_stack *find_min(t_stack *a);
+t_stack	*second_to_min(int min, t_stack *a);
 
 /* Memory free functions */
 void	ft_free(char **s);

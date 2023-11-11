@@ -55,6 +55,40 @@ void set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node)
 		stack->b_median = true;
 }
 
+t_stack	*second_to_min(int min, t_stack *a)
+{
+	int new_min;
+	t_stack *min_node;
+
+	new_min = 2147483647;
+	min_node = a;
+	while (a)
+	{
+		if (a->content < new_min && a->content != min && a->content > min)
+		{
+			min_node = a;
+			new_min = a->content;
+		}
+		a = a->next;
+	}
+	return (min_node);
+}
+
+void assign_index(t_data *stack, t_stack *a)
+{
+	int i;
+	t_stack *min;
+
+	i = 1;
+	min = find_min(a);
+	min->index = 1;
+	while (++i < stack->length + 1)
+	{
+		min = second_to_min(min->content, a);
+		min->index = i;
+	}
+}
+
 // // Print content of a list
 // void	print_list(t_stack *list)
 // {

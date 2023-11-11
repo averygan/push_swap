@@ -12,36 +12,6 @@
 
 #include "../push_swap.h"
 
-// Sets target node of b to a matching node in a that is the smallest node that's larger
-// If none exists, set to smallest node
-void	set_target(t_stack *a, t_stack *b)
-{
-	t_stack *tmp;
-	t_stack *target_node;
-	int flag;
-
-	while (b)
-	{
-		flag = 0;
-		tmp = a;
-		target_node = find_max(a);
-		while (tmp)
-		{
-			if (tmp->content > b->content && tmp->content <= target_node->content)
-			{
-				target_node = tmp;
-				flag = 1;
-			}
-			tmp = tmp->next;
-		}
-		if (flag)
-			b->target = target_node;
-		else
-			b->target = find_min(a);
-		b = b->next;
-	}
-}
-
 // Function to find the closest node, from top and bottom, that matches pivot value
 int get_cost(t_stack *a, t_stack *node)
 {
@@ -51,7 +21,7 @@ int get_cost(t_stack *a, t_stack *node)
 	position = get_position(a, node);
 	stacksize = ft_stacksize(a);
 	if (position > (stacksize / 2))
-		return (stacksize - position);
+		return (stacksize - position + 1);
 	else
 		return (position - 1);
 }
@@ -98,17 +68,43 @@ void move_stacks(t_data *stack, t_stack **a, t_stack **b)
 		pa(a, b);
 }
 
+// Function to push from initial stack a to b, split by median
+// Push to b
+void push_to_b(t_data *stack, t_stack **a, t_stack **b)
+{
+	int size;
+	int pushed;
+	int i;
+
+	size = stack->length;
+	pushed = 0;
+	i = 0;
+	while (i < size && pushed < size / 2)
+	{
+		if ((*a)->index <= size / 2)
+		{
+			pb(a, b);
+			pushed++;
+		}
+		else
+			ra(a, 0);
+		i++;
+	}
+	while (ft_stacksize(*a) > 3)
+		pb(a, b);
+}
+
 // Algo to sort n elements
 // 	Push all nodes from b to a (except 3)
 //	Assign b to a target node
 //	Calculate cost of moving from b node to target node
 //	Move cheapest
+//	When b is empty, rotate a until smallest node is at the top
 void	sort_n(t_data *stack, t_stack **a, t_stack **b)
 {
 	t_stack *min;
 
-	while (ft_stacksize(*a) > 3)
-		pb(a, b);
+	push_to_b(stack, a, b);
 	sort_three(a);
 	while (*b)
 	{
