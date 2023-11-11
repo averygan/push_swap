@@ -18,14 +18,15 @@ int	stack_init(t_data *stack, t_stack **a, int argc, char **argv)
 	int		i;
 	char	**av;
 	t_stack	*node;
-	int counter = 0;
+	int		counter;
 
+	counter = 0;
 	i = 0;
 	if (argc == 2)
 		av = ft_split(argv[1], ' ');
 	else
 		av = argv + 1;
-	error_checker(stack, a, av, 0);
+	error_checker(stack, av);
 	while (av[i])
 	{
 		node = newnode(ft_atol(stack, av[i]));
@@ -33,45 +34,45 @@ int	stack_init(t_data *stack, t_stack **a, int argc, char **argv)
 		i++;
 		counter++;
 	}
-	error_checker(stack, a, av, 1);
+	error_dup(stack, a);
 	if (argc == 2)
 		ft_free(av);
 	return (ft_stacksize(*a));
 }
 
-// Error checker to check if all numbers are valid
-// Check == 0 checks if numbers are valid
-// Check == 1 checks for duplicated numbers
-void	error_checker(t_data *stack, t_stack **a, char **av, int check)
+// Checks for duplicate error
+void	error_dup(t_data *stack, t_stack **a)
 {
-	int		i;
 	t_stack	*curr;
 	t_stack	*num;
 
-	i = -1;
-	if (check == 0)
+	curr = *a;
+	while (curr)
 	{
-		while (av[++i])
+		num = curr->next;
+		while (num)
 		{
-			if (av[i][0] == '\0')
-				ft_error(stack, NULL, 1);
-			ft_atol(stack, av[i]);
+			if (num->content == curr->content)
+				ft_error(stack, a, 0);
+			num = num->next;
 		}
+		curr = curr->next;
 	}
-	else
+}
+
+// Error checker to check if all numbers are valid
+// Check == 0 checks if numbers are valid
+// Check == 1 checks for duplicated numbers
+void	error_checker(t_data *stack, char **av)
+{
+	int		i;
+
+	i = -1;
+	while (av[++i])
 	{
-		curr = *a;
-		while (curr)
-		{
-			num = curr->next;
-			while (num)
-			{
-				if (num->content == curr->content)
-					ft_error(stack, a, 0);
-				num = num->next;
-			}
-			curr = curr->next;
-		}
+		if (av[i][0] == '\0')
+			ft_error(stack, NULL, 1);
+		ft_atol(stack, av[i]);
 	}
 }
 

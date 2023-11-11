@@ -22,7 +22,7 @@ typedef struct s_stack
 {
 	int				content;
 	int				index;
-	int 			cost;
+	int				cost;
 	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
@@ -30,16 +30,17 @@ typedef struct s_stack
 
 typedef struct s_data
 {
-	int length;
-	int a_size;
-	int b_size;
-	bool a_median;
-	bool b_median;
+	int		length;
+	int		a_size;
+	int		b_size;
+	bool	a_median;
+	bool	b_median;
 }	t_data;
 
 /* Stack init functions */
 int		stack_init(t_data *stack, t_stack **a, int argc, char **argv);
-void	error_checker(t_data *stack, t_stack **a, char **av, int check);
+void	error_checker(t_data *stack, char **av);
+void	error_dup(t_data *stack, t_stack **a);
 void	ft_error(t_data *stack, t_stack **a, int num);
 int		ft_atol(t_data *stack, char *num);
 
@@ -66,7 +67,7 @@ void	rrb(t_stack **b, int repeat);
 void	rrr(t_stack **a, t_stack **b);
 
 /* Sort algorithm functions */
-void 	sort_three(t_stack **a);
+void	sort_three(t_stack **a);
 void	sort_ten(t_stack **a, t_stack **b);
 
 /* Sort n algorithm functions */
@@ -80,14 +81,14 @@ void	push_to_b(t_data *stack, t_stack **a, t_stack **b);
 int		is_sorted(t_stack *a);
 int		get_position(t_stack *a, t_stack *match);
 void	move_to_top(t_stack **a, t_stack **b, t_stack *node);
-void	rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name);
+void	rotate_stack(t_data *stack, t_stack **a_b, t_stack *to_move, char s);
 void	set_target(t_stack *a, t_stack *b);
 
 /* Push swap utils */
 void	set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node);
 void	assign_index(t_data *stack, t_stack *a);
-t_stack *find_max(t_stack *a);
-t_stack *find_min(t_stack *a);
+t_stack	*find_max(t_stack *a);
+t_stack	*find_min(t_stack *a);
 t_stack	*second_to_min(int min, t_stack *a);
 
 /* Memory free functions */

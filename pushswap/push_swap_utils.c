@@ -13,9 +13,9 @@
 #include "../push_swap.h"
 
 /* Find max node */
-t_stack *find_max(t_stack *a)
+t_stack	*find_max(t_stack *a)
 {
-	t_stack *max;
+	t_stack	*max;
 
 	max = a;
 	while (a)
@@ -28,9 +28,9 @@ t_stack *find_max(t_stack *a)
 }
 
 /* Find min node */
-t_stack *find_min(t_stack *a)
+t_stack	*find_min(t_stack *a)
 {
-	t_stack *min;
+	t_stack	*min;
 
 	min = a;
 	while (a)
@@ -42,8 +42,9 @@ t_stack *find_min(t_stack *a)
 	return (min);
 }
 
-/* Function to set data for above/below median for target node and size of both stacks */
-void set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node)
+// Function to set data for above/below median 
+// for target node and size of both stacks
+void	set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node)
 {
 	stack->a_median = false;
 	stack->b_median = false;
@@ -57,8 +58,8 @@ void set_data(t_data *stack, t_stack *a, t_stack *b, t_stack *target_node)
 
 t_stack	*second_to_min(int min, t_stack *a)
 {
-	int new_min;
-	t_stack *min_node;
+	int		new_min;
+	t_stack	*min_node;
 
 	new_min = 2147483647;
 	min_node = a;
@@ -74,10 +75,10 @@ t_stack	*second_to_min(int min, t_stack *a)
 	return (min_node);
 }
 
-void assign_index(t_data *stack, t_stack *a)
+void	assign_index(t_data *stack, t_stack *a)
 {
-	int i;
-	t_stack *min;
+	int		i;
+	t_stack	*min;
 
 	i = 1;
 	min = find_min(a);

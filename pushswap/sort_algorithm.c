@@ -17,9 +17,9 @@
 // If largest number at top, ra
 // If largest number in the middle, sa, ra
 // Checks first two elements, sa if #1 larger than #2
-void sort_three(t_stack **a)
+void	sort_three(t_stack **a)
 {
-	t_stack *max;
+	t_stack	*max;
 
 	max = find_max(*a);
 	if (is_sorted(*a))
@@ -38,17 +38,14 @@ void sort_three(t_stack **a)
 // If size = 2, swap top 2
 	// When size = 3 -> use sort_three function
 // Push from b back to a
-void sort_ten(t_stack **a, t_stack **b)
+void	sort_ten(t_stack **a, t_stack **b)
 {
-	// Get min node and move to top, then move to b
 	while (ft_stacksize(*a) > 3)
 		move_to_top(a, b, find_min(*a));
 	if (ft_stacksize(*a) == 2)
 		sa(a, 0);
-	// If stack size == 3, sort the three numbers in a
 	else if (ft_stacksize(*a) == 3)
 		sort_three(a);
-	// Push from b back to a
 	while (*b)
 		pa(a, b);
 }

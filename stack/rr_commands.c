@@ -15,9 +15,10 @@
 // shift down all elements of stack a by 1 (last el becomes first)
 void	rra(t_stack **a, int repeat)
 {
-	t_stack *last;
-	t_stack *second_to_last;
-	int size;
+	t_stack	*last;
+	t_stack	*second_to_last;
+	int		size;
+
 	size = ft_stacksize(*a);
 	if (size > 1)
 	{
@@ -36,9 +37,9 @@ void	rra(t_stack **a, int repeat)
 // shift down all elements of stack b by 1 (last el becomes first)
 void	rrb(t_stack **b, int repeat)
 {
-	t_stack *last;
-	t_stack *second_to_last;
-	int size;
+	t_stack	*last;
+	t_stack	*second_to_last;
+	int		size;
 
 	size = ft_stacksize(*b);
 	if (size > 1)
@@ -60,5 +61,5 @@ void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a, 1);
 	rrb(b, 1);
-	ft_printf("rrr\n");	
+	ft_printf("rrr\n");
 }

@@ -15,8 +15,9 @@
 // swap first 2 elements at the top of stack a
 void	sa(t_stack **a, int repeat)
 {
-	int size;
-	t_stack *tmp;
+	int		size;
+	t_stack	*tmp;
+
 	size = ft_stacksize(*a);
 	if (size >= 2)
 	{
@@ -36,8 +37,9 @@ void	sa(t_stack **a, int repeat)
 // swap first 2 elements at the top of stack b
 void	sb(t_stack **b, int repeat)
 {
-	int size;
-	t_stack *tmp;
+	int		size;
+	t_stack	*tmp;
+
 	size = ft_stacksize(*b);
 	if (size >= 2)
 	{

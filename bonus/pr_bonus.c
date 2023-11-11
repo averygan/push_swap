@@ -15,8 +15,9 @@
 // take first el at top of b, and put it at top of a, nothing if b empty
 void	pa(t_stack **a, t_stack **b)
 {
-	int size;
-	t_stack *tmp;
+	int		size;
+	t_stack	*tmp;
+
 	size = ft_stacksize(*b);
 	if (size > 0)
 	{
@@ -35,7 +36,7 @@ void	pa(t_stack **a, t_stack **b)
 void	pb(t_stack **a, t_stack **b)
 {
 	int		size;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	size = ft_stacksize(*a);
 	if (size > 0)
@@ -54,8 +55,8 @@ void	pb(t_stack **a, t_stack **b)
 // shift up all elements of stack a by 1 (first el becomes last)
 void	ra(t_stack **a)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (*a)
 	{
@@ -75,8 +76,9 @@ void	ra(t_stack **a)
 // shift up all elements of stack b by 1 (first el becomes last)
 void	rb(t_stack **b)
 {
-	t_stack *first;
-	t_stack *last;
+	t_stack	*first;
+	t_stack	*last;
+
 	if (*b)
 	{
 		first = *b;

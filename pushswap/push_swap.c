@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
-	t_data *stack;
+	t_stack	*a;
+	t_stack	*b;
+	t_data	*stack;
 
 	stack = malloc(sizeof(t_data));
 	a = NULL;

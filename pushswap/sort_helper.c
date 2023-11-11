@@ -13,9 +13,9 @@
 #include "../push_swap.h"
 
 // Function to check if stack is sorted
-int is_sorted(t_stack *a)
+int	is_sorted(t_stack *a)
 {
-	t_stack *curr;
+	t_stack	*curr;
 
 	curr = a;
 	while (a)
@@ -31,45 +31,45 @@ int is_sorted(t_stack *a)
 // Gets which position int match is within the linked list
 int	get_position(t_stack *a, t_stack *match)
 {
-	int pos;
+	int	pos;
 
-	 pos = 1;
-	 while (a)
-	 {
-	 	if (match && a && a->content == match->content)
-	 		return (pos);
-	 	pos++;
-	 	a = a->next;
-	 }
-	 return (-1);
+	pos = 1;
+	while (a)
+	{
+		if (match && a && a->content == match->content)
+			return (pos);
+		pos++;
+		a = a->next;
+	}
+	return (-1);
 }
 
 // Rotate stack till to_move is at the top of stack
-void rotate_stack(t_data *stack, t_stack **curr_stack, t_stack *to_move, char stack_name)
+void	rotate_stack(t_data *stack, t_stack **a_b, t_stack *to_move, char s)
 {
-	while (*curr_stack != to_move)
+	while (*a_b != to_move)
 	{
-		if (stack_name == 'a')
+		if (s == 'a')
 		{
 			if (stack->a_median)
-				rra(curr_stack, 0);
+				rra(a_b, 0);
 			else
-				ra(curr_stack, 0);
+				ra(a_b, 0);
 		}
-		else if (stack_name == 'b')
+		else if (s == 'b')
 		{
 			if (stack->b_median)
-				rrb(curr_stack, 0);
+				rrb(a_b, 0);
 			else
-				rb(curr_stack, 0);
+				rb(a_b, 0);
 		}
 	}
 }
 
 // Move given node to top, and push to stack b
-void move_to_top(t_stack **a, t_stack **b, t_stack *node)
+void	move_to_top(t_stack **a, t_stack **b, t_stack *node)
 {
-	int position;
+	int	position;
 
 	position = get_position(*a, node);
 	while (position != 1)
@@ -86,30 +86,31 @@ void move_to_top(t_stack **a, t_stack **b, t_stack *node)
 		pb(a, b);
 }
 
-// Sets target node of b to a matching node in a that is the smallest node that's larger
+// Sets target node of b to a matching node in a that is
+// the smallest, larger node
 // If none exists, set to smallest node
 void	set_target(t_stack *a, t_stack *b)
 {
-	t_stack *tmp;
-	t_stack *target_node;
-	int flag;
+	t_stack	*tmp;
+	t_stack	*target_n;
+	int		flag;
 
 	while (b)
 	{
 		flag = 0;
 		tmp = a;
-		target_node = find_max(a);
+		target_n = find_max(a);
 		while (tmp)
 		{
-			if (tmp->content > b->content && tmp->content <= target_node->content)
+			if (tmp->content > b->content && tmp->content <= target_n->content)
 			{
-				target_node = tmp;
+				target_n = tmp;
 				flag = 1;
 			}
 			tmp = tmp->next;
 		}
 		if (flag)
-			b->target = target_node;
+			b->target = target_n;
 		else
 			b->target = find_min(a);
 		b = b->next;

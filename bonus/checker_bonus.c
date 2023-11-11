@@ -12,7 +12,7 @@
 
 #include "../push_swap_bonus.h"
 
-void do_commands(char *buf, t_stack **a, t_stack **b)
+void	do_commands(char *buf, t_stack **a, t_stack **b)
 {
 	if (ft_strncmp(buf, "sa\n", 3) == 0)
 		sa(a);
@@ -38,9 +38,9 @@ void do_commands(char *buf, t_stack **a, t_stack **b)
 		rr(a, b);
 }
 
-int checker(t_stack **a, t_stack **b)
+int	checker(t_stack **a, t_stack **b)
 {
-	char *buf;
+	char	*buf;
 
 	while (buf)
 	{
@@ -58,9 +58,9 @@ int checker(t_stack **a, t_stack **b)
 
 int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
-	t_data *stack;
+	t_stack	*a;
+	t_stack	*b;
+	t_data	*stack;
 
 	stack = malloc(sizeof(t_data));
 	a = NULL;

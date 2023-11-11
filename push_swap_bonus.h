@@ -22,7 +22,7 @@ typedef struct s_stack
 {
 	int				content;
 	int				index;
-	int 			cost;
+	int				cost;
 	struct s_stack	*target;
 	struct s_stack	*prev;
 	struct s_stack	*next;
@@ -30,16 +30,17 @@ typedef struct s_stack
 
 typedef struct s_data
 {
-	int length;
-	int a_size;
-	int b_size;
-	bool a_median;
-	bool b_median;
+	int		length;
+	int		a_size;
+	int		b_size;
+	bool	a_median;
+	bool	b_median;
 }	t_data;
 
 /* Stack init functions */
 int		stack_init(t_data *stack, t_stack **a, int argc, char **argv);
-void	error_checker(t_data *stack, t_stack **a, char **av, int check);
+void	error_checker(t_data *stack, char **av);
+void	error_dup(t_data *stack, t_stack **a);
 void	ft_error(t_data *stack, t_stack **a, int num);
 int		ft_atol(t_data *stack, char *num);
 
@@ -73,4 +74,4 @@ void	ft_free(char **s);
 void	free_stacks(t_data *stack, t_stack *a, t_stack *b);
 void	free_stack(t_stack *a);
 
-# endif
+#endif
