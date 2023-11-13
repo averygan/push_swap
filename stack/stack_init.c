@@ -26,17 +26,17 @@ int	stack_init(t_data *stack, t_stack **a, int argc, char **argv)
 		av = ft_split(argv[1], ' ');
 	else
 		av = argv + 1;
-	error_checker(stack, av);
+	error_checker(stack, argc, av);
 	while (av[i])
 	{
-		node = newnode(ft_atol(stack, av[i]));
+		node = newnode(ft_atol(stack, av[i], argc, av));
 		ft_addnode(a, node);
 		i++;
 		counter++;
 	}
-	error_dup(stack, a);
 	if (argc == 2)
 		ft_free(av);
+	error_dup(stack, a);
 	return (ft_stacksize(*a));
 }
 
@@ -53,7 +53,7 @@ void	error_dup(t_data *stack, t_stack **a)
 		while (num)
 		{
 			if (num->content == curr->content)
-				ft_error(stack, a, 0);
+				ft_error(stack, a, 0, NULL);
 			num = num->next;
 		}
 		curr = curr->next;
@@ -61,33 +61,37 @@ void	error_dup(t_data *stack, t_stack **a)
 }
 
 // Error checker to check if all numbers are valid
-// Check == 0 checks if numbers are valid
-// Check == 1 checks for duplicated numbers
-void	error_checker(t_data *stack, char **av)
+// Checks if numbers are valid
+void	error_checker(t_data *stack, int argc, char **av)
 {
 	int		i;
 
 	i = -1;
+	if (!av[0] && argc == 2)
+		ft_error(stack, NULL, argc, av);
 	while (av[++i])
 	{
 		if (av[i][0] == '\0')
-			ft_error(stack, NULL, 1);
-		ft_atol(stack, av[i]);
+			ft_error(stack, NULL, argc, av);
+		ft_atol(stack, av[i], argc, av);
 	}
 }
 
+// Free all allocated memory
 // Output error
-void	ft_error(t_data *stack, t_stack **a, int num)
+void	ft_error(t_data *stack, t_stack **a, int argc, char **av)
 {
 	free(stack);
-	if (num == 0)
+	if (argc == 2)
+		ft_free(av);
+	if (a)
 		free_stack(*a);
 	write(2, "Error\n", 6);
-	exit(1);
+	exit(0);
 }
 
 // Atol function and returns error if invalid integer
-int	ft_atol(t_data *stack, char *num)
+int	ft_atol(t_data *stack, char *num, int argc, char **av)
 {
 	long	res;
 	int		i;
@@ -96,13 +100,13 @@ int	ft_atol(t_data *stack, char *num)
 	res = 0;
 	i = 0;
 	sign = 1;
-	while (num[i] == ' ')
-		i++;
-	if (num[i] == '+' || num[i] == '-')
+	if (num[0] == '+' || num[0] == '-')
 	{
-		if (num[i] == '-')
+		if (num[0] == '-')
 			sign *= -1;
 		i++;
+		if (!ft_isdigit(num[i]))
+			ft_error(stack, NULL, argc, av);
 	}
 	while (num[i] && ft_isdigit(num[i]))
 	{
@@ -110,8 +114,8 @@ int	ft_atol(t_data *stack, char *num)
 		i++;
 	}
 	if (num[i] != '\0')
-		ft_error(stack, NULL, 1);
+		ft_error(stack, NULL, argc, av);
 	if ((res * sign) > 2147483647 || (res * sign) < -2147483647)
-		ft_error(stack, NULL, 1);
+		ft_error(stack, NULL, argc, av);
 	return ((int)(res * sign));
 }

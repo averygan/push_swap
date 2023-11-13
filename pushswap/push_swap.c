@@ -19,14 +19,17 @@ int	main(int argc, char **argv)
 	t_data	*stack;
 
 	stack = malloc(sizeof(t_data));
+	if (!stack)
+		return (-1);
 	a = NULL;
 	b = NULL;
 	if (argc > 1)
 		stack->length = stack_init(stack, &a, argc, argv);
 	if (is_sorted(a))
 	{
+		free(stack);
 		free_stack(a);
-		exit(0);
+		return (0);
 	}
 	assign_index(stack, a);
 	if (stack->length <= 10)

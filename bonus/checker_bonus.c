@@ -53,7 +53,7 @@ int	checker(t_stack **a, t_stack **b)
 			do_commands(&error, buf, a, b);
 		free(buf);
 	}
-	if (error != 0)
+	if (error)
 		ft_putendl_fd("Error", 2);
 	else if (is_sorted(*a) && !(*b))
 		ft_putendl_fd("OK", 1);
@@ -72,7 +72,10 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc <= 1)
+	{
+		free(stack);
 		return (0);
+	}
 	stack->length = stack_init(stack, &a, argc, argv);
 	checker(&a, &b);
 	free_stacks(stack, a, b);

@@ -39,10 +39,10 @@ typedef struct s_data
 
 /* Stack init functions */
 int		stack_init(t_data *stack, t_stack **a, int argc, char **argv);
-void	error_checker(t_data *stack, char **av);
 void	error_dup(t_data *stack, t_stack **a);
-void	ft_error(t_data *stack, t_stack **a, int num);
-int		ft_atol(t_data *stack, char *num);
+void	error_checker(t_data *stack, int argc, char **av);
+void	ft_error(t_data *stack, t_stack **a, int argc, char **av);
+int		ft_atol(t_data *stack, char *num, int argc, char **av);
 
 /* Stack helper functions */
 t_stack	*newnode(int content);
